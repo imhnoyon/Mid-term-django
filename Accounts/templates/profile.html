@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+ <a  class="btn btn-primary m-5" href="{% url "edit_profile" request.user.id %}">Edit Profile</a>
+
+
+ 
+
+ <div class="container ">
+    <div class="row "style="margin-left: 190px;">
+        {% for form in forms %}
+        <div class="col-4">
+            <div class="card mb-3" style="width: 18rem;">
+                <img  src="{{form.car.image.url}}" class="card-img-top" alt="{{ form.car.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">Car_Name:{{ form.car.name }}</h5>
+                    <p class="card-text">Price: {{ form.car.price }}</p>
+                    <p class="card-text">Brand_name: {{ form.car.brand.Brand_name }}</p>
+                   
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock  %}
+
+
+

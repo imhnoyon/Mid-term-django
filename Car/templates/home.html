@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div style="background-color: #bfbfe7;">
+  <div class="d-flex flex-wrap align-items-center">
+    <div class='col-6 p-3'>
+      <h2>Welcome to Car Selection BD</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam repellendus nostrum ea assumenda esse excepturi dolor repellat tenetur quo, beatae dolores soluta in laudantium dolore veniam pariatur deserunt adipisci dolorem explicabo laborum consequuntur eos ipsam sunt. Provident, perferendis rerum soluta, architecto velit in laborum esse laboriosam impedit iusto debitis iure aliquam! Ratione aspernatur officiis corporis! Et provident harum ipsa sequi maxime recusandae, amet maiores dignissimos nisi facere doloribus aliquam nam, aperiam placeat ea ut quod deleniti asperiores magni ullam dolores officiis animi? Quibusdam deserunt, perspiciatis reprehenderit sed officia blanditiis dicta error eum voluptate! A animi quae officia possimus rerum necessitatibus.</p>
+    </div>
+  
+    <div class="col-6 p-3">
+      <img style="width: 100%; padding-right: 20px;" src="{% static 'banner.jpg' %}" alt="">
+    </div>  
+</div>
+<hr>
+<div class='col-12 p-3 ' >
+  <h5 style='text-align:center' ><b>All Brands</b></h5>
+  <br><br>
+  {% for b in data %}
+  
+      <a  style="margin-left: 120px;"  class='btn btn-warning text-decoration-none text-white ' href="{% url "brandlist" b.slug %}">{{b.Brand_name}}</a>
+ 
+  {% endfor %}
+</div>
+<hr>
+<div class='col-10 p-3 '>
+  <p style='text-align:center'>{{form | length}} Results Founds</p>
+  <div class="d-flex flex-wrap  px-5 pt-5">
+<hr>
+
+    <div class="container ">
+      <div class="row "style="margin-left: 190px;">
+          {% for car in form %}
+          <div class="col-4">
+              <div class="card mb-3" style="width: 18rem;">
+                  <img  src="{{car.image.url}}" class="card-img-top" alt="{{ car.name }}">
+                  <div class="card-body">
+                      <h5 class="card-title">Car Name: {{ car.name }}</h5>
+                      <p class="card-text">Price: {{ car.price }}</p>
+                      <p class="card-text">Brand: {{ car.brand.Brand_name }}</p>
+                      <a href="{% url "details" car.id %}" class="btn btn-warning " style="margin-left: 50px;">View Details</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+</div>
+
+
+    
+{% endblock  %}
+
+
+
