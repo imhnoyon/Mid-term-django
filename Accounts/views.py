@@ -7,7 +7,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from Car.models import Car
 from Buy_Car.models import Purchase
-
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -38,14 +40,14 @@ class user_login(LoginView):
         context["type"] = 'Login'
         return context
     
-
-def profile(request):
+@login_required
+def Profile(request):
     purchase=Purchase.objects.filter(user=request.user)
     return render(request,'profile.html',{'forms':purchase})
 
 
-
-class EditProfileView(UpdateView):
+@method_decorator(login_required,name='dispatch')
+class EditProfileView(LoginRequiredMixin,UpdateView):
     model =User  
     form_class = forms.ChangeUserForm
     template_name = 'edit_profile.html'
@@ -58,6 +60,7 @@ class EditProfileView(UpdateView):
 
 
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('login')

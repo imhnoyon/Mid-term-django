@@ -57,7 +57,3 @@ class CarDetailView(DetailView):
         context['comment_form']=comment_form
         return context
 
-# class BrandList(ListView):
-#     model = Brands
-#     template_name = 'home.html'
-#     context_object_name = 'brands'

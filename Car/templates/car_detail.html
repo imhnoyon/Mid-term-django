@@ -23,25 +23,23 @@
 
 
 
-<div class="card m-2 ">
+<div class="card m-2"style="width: 50%;margin: auto;">
     <h5 class="p-3">Total Comments: {{comments|length}}</h5>
+    <div class=" m-2 " >
     {% for comment in comments  %}
-    <div class="card-body border m-2">
-     
+   
      <p><b>{{comment.name}}</b> {{comment.created_on}}</p>
      <p>Email:{{comment.email}}</p>
      <p>Comment:{{comment.body}}</p>
      
-
-    </div>
      {% endfor %}
-
+    </div>
     
   </div>
 
 
 
-<div class="card m-2">
+<div class="card m-2  ">
     <div class="card-body">
      <form method='post'>
       {% csrf_token %}

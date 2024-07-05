@@ -1,8 +1,10 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect
 from .models import Purchase
 from Car.models import Car
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def buy_car(request, id):
     car = Car.objects.get(pk=id)
     if car.quantity > 0:
